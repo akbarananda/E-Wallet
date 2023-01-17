@@ -10,8 +10,8 @@ public class App {
         EWallet.initialUser();
 
         
-        // new LoginFrame().setVisible(true);
-        new HomeFrame().setVisible(true);
+        new LoginFrame().setVisible(true);
+        // new HomeFrame().setVisible(true);
         // new TugasFrame().setVisible(true);
 
     }

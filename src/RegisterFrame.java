@@ -16,8 +16,8 @@ public class RegisterFrame extends MainFrame {
 
     public RegisterFrame(){
         super("Register", 400, 400);
-        component();
-        event();
+        // component();
+        // event();
     }
 
     protected void component(){
@@ -74,7 +74,8 @@ public class RegisterFrame extends MainFrame {
             String noTelp = noTelpField.getText();
             String password = passField.getText();
             String pin = pinField.getText();
-            User akunBaru = new User(nama, username, noTelp, password, pin);
+            User akunBaru = new User(nama, username, password, noTelp, pin);
+            
 
             if (Auth.register(akunBaru)) {
                 new LoginFrame().setVisible(true);

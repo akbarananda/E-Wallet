@@ -14,8 +14,8 @@ public class TopupFrame extends MainFrame{
     
     public TopupFrame(){
         super("TopupFrame", 310, 200);
-        component();
-        event();
+        // component();
+        // event();
     }
 
     protected void component(){
@@ -41,7 +41,7 @@ public class TopupFrame extends MainFrame{
 
         tambahButton.addActionListener(e -> {            
             User akun = Auth.getUserLogged();
-            int nominal = 0;
+            int nominal = Integer.parseInt(masukanField.getText());
             
             
 

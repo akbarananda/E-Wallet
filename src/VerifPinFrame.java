@@ -2,15 +2,22 @@ import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JOptionPane;
+
+import controler.Auth;
+import entity.User;
 
 public class VerifPinFrame extends MainFrame{
     private JLabel pinLabel;
+    private JTextField pinField;
     private JButton lanjutButton;
+    private String pin;
 
     public VerifPinFrame(){
         super("Verif PIN", 355, 260);
-        component();
-        event();
+        // component();
+        // event();
     }
 
     protected void component(){
@@ -19,6 +26,9 @@ public class VerifPinFrame extends MainFrame{
         setFontSize(pinLabel, 20);
         setFontStyle(pinLabel, Font.BOLD);
         boundedAdd(pinLabel, 114, 42, 125, 27);
+
+        pinField = new JTextField();
+        boundedAdd(pinField, 136, 98, 83, 40);
 
         lanjutButton = new JButton("Lanjut");
         setFontSize(lanjutButton, 14);
@@ -32,8 +42,19 @@ public class VerifPinFrame extends MainFrame{
     protected void event(){
 
         lanjutButton.addActionListener(e -> {
-            new HomeFrame().setVisible(true);
-            dispose();
+           
+            
+            if (Auth.verifPin(pinField.getText())) {
+                new HomeFrame().setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "PIN Yang Anda Masukan Salah !",
+                        "PIN Salah",
+                        JOptionPane.ERROR_MESSAGE);
+                        new LoginFrame().setVisible(true);
+                        dispose();
+            }
         });
     }
 }

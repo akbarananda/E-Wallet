@@ -8,11 +8,13 @@ public class Auth {
 
     public static boolean login(String username, String password) {
         for (User user : EWallet.getAkunTerdaftar()) {
+            System.out.println(user.username);
             if ((user.username.equals(username)) && (user.password.equals(password))) {
                 userLogged = user;
                 return true;
             }
         }
+
         return false;
     }
 
@@ -24,7 +26,8 @@ public class Auth {
             }
         }
 
-        EWallet.getAkunTerdaftar().add(akunBaru);
+        EWallet.regist(akunBaru);
+
         return true;
     }
 

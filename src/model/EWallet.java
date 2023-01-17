@@ -35,6 +35,10 @@ public class EWallet {
         return status;
     }
 
+    public static void regist(User user) {
+        akunTerdaftar.add(user);
+        
+    }
     public static ArrayList<User> getAkunTerdaftar() {
         return akunTerdaftar;
     }

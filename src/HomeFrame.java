@@ -9,28 +9,28 @@ import controler.Auth;
 
 import entity.*;
 
-public class HomeFrame extends MainFrame{
+public class HomeFrame extends MainFrame {
     private JLabel namaLabel, saldoLabel, selamatLabel, uangLabel;
-    private JButton topUpButton, pulsaButton, transButton, refreshButton;
+    private JButton topUpButton, pulsaButton, transButton, refreshButton, logButton;
     private ImageIcon icon = new ImageIcon("topup.png");
     private ImageIcon icon2 = new ImageIcon("pulsa.png");
     private ImageIcon icon3 = new ImageIcon("transaksi.png");
     private ImageIcon refresh = new ImageIcon("refresh.png");
 
-    public HomeFrame(){
+    public HomeFrame() {
         super("Home", 415, 560);
-        component();
-        event();
+        // component();
+        // event();
     }
 
-    protected void component(){
+    protected void component() {
 
         selamatLabel = new JLabel("Selamat Datang");
         setFontSize(selamatLabel, 20);
         setFontStyle(selamatLabel, Font.BOLD);
         boundedAdd(selamatLabel, 19, 26, 150, 27);
-        
-        namaLabel = new JLabel("Nama");
+
+        namaLabel = new JLabel(Auth.getUserLogged().getNama());
         setFontSize(namaLabel, 15);
         setFontStyle(namaLabel, Font.PLAIN);
         boundedAdd(namaLabel, 46, 66, 50, 20);
@@ -53,7 +53,7 @@ public class HomeFrame extends MainFrame{
         topUpButton.setVerticalTextPosition(JButton.BOTTOM);
         setFontSize(topUpButton, 10);
         setFontStyle(topUpButton, Font.BOLD);
-        boundedAdd(topUpButton, 46, 209, 75 , 75);
+        boundedAdd(topUpButton, 46, 209, 75, 75);
 
         pulsaButton = new JButton();
         pulsaButton.setIcon(icon2);
@@ -83,9 +83,13 @@ public class HomeFrame extends MainFrame{
         refreshButton.setFocusPainted(false);
         refreshButton.setBorderPainted(false);
         boundedAdd(refreshButton, 339, 117, 29, 30);
+
+        logButton = new JButton("Logout");
+        logButton.setFocusable(false);
+        boundedAdd(logButton, 299, 509, 91, 29);
     }
 
-    protected void event(){
+    protected void event() {
 
         User akun = Auth.getUserLogged();
 
@@ -94,11 +98,10 @@ public class HomeFrame extends MainFrame{
         });
 
         refreshButton.addActionListener(e -> {
-            
-            int saldo = akun.dompet.getSaldo().getSaldo();
-            Rupiah.format(saldo);
 
-            String numStr = String.valueOf(akun);
+            int saldo = akun.dompet.getSaldo().getSaldo();
+
+            String numStr = Rupiah.format(saldo);
             uangLabel.setText(numStr);
         });
 
@@ -107,6 +110,15 @@ public class HomeFrame extends MainFrame{
             dispose();
         });
 
+        transButton.addActionListener(e -> {
+            new TransaksiFrame().setVisible(true);
+        });
+
+        logButton.addActionListener(e -> {
+            new LoginFrame().setVisible(true);
+            dispose();
+        });
+
     }
-    
+
 }
