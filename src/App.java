@@ -1,6 +1,7 @@
 import controler.LoginPage;
 import model.EWallet;
 import model.Storage;
+import view.LoginFrame;
 
 
 public class App {

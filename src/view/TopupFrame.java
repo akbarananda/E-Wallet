@@ -1,3 +1,4 @@
+package view;
 import java.awt.Font;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;

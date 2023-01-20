@@ -1,12 +1,19 @@
+package view;
 import javax.swing.JFrame;
 import java.awt.Component;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+
 
 public abstract class MainFrame extends JFrame {
-    private ImageIcon image = new ImageIcon("logoFE.png");
+    private ImageIcon image = loadImage("src/assets/logoFE.png");
 
     protected Color backgroundColor = Color.decode("#F0F0F0");
     protected Color primaryColor = Color.decode("#2490EC");
@@ -48,29 +55,29 @@ public abstract class MainFrame extends JFrame {
         add(comp);
     }
     
-    // protected ImageIcon loadImage(String imagePath) {
-    //     return loadImage(imagePath, 150, 150);
-    // }
+    protected ImageIcon loadImage(String imagePath) {
+        return loadImage(imagePath, 150, 150);
+    }
 
-    // protected ImageIcon loadImage(String imagePath, int width, int height) {
-    //     try {
-    //         BufferedImage bImage;
-    //         Image imgResize;
-    //         ImageIcon imgIcon = null;
+    protected ImageIcon loadImage(String imagePath, int width, int height) {
+        try {
+            BufferedImage bImage;
+            Image imgResize;
+            ImageIcon imgIcon = null;
 
-    //         bImage = ImageIO.read(new File(imagePath));
+            bImage = ImageIO.read(new File(imagePath));
 
-    //         imgResize = bImage.getScaledInstance(
-    //                 width, height,
-    //                 Image.SCALE_SMOOTH);
+            imgResize = bImage.getScaledInstance(
+                    width, height,
+                    Image.SCALE_SMOOTH);
 
-    //         imgIcon = new ImageIcon(imgResize);
+            imgIcon = new ImageIcon(imgResize);
 
-    //         return imgIcon;
-    //     } catch (IOException ex) {
-    //         return null;
-    //     }
-    // }
+            return imgIcon;
+        } catch (IOException ex) {
+            return null;
+        }
+    }
 
     protected void setFontStyle(Component comp, int style) {
         Font fontLama = comp.getFont();

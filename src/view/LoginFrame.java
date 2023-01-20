@@ -1,3 +1,4 @@
+package view;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -14,7 +15,7 @@ public class LoginFrame extends MainFrame {
     private JTextField UsernameField;
     private JPasswordField PasswordField;
     private JButton loginButton, registButton;
-    private ImageIcon logo = new ImageIcon("logo.png");
+    private ImageIcon logo = loadImage("src/assets/logo.png");
 
     public LoginFrame(){
         super("Login",415, 560);
